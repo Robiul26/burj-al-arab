@@ -1,0 +1,22 @@
+.login-from{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+.login-from button{
+    background: #18185a;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 10px 12px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .5 ease-in-out;
+}
+.login-from button:hover{
+    background: #343486;
+    
+}
