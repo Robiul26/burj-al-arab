@@ -13,7 +13,7 @@ const Header = () => {
                 <Link className='nav-item' to="/">
                 <img className='logo' src={logo} alt="" />
                 </Link>
-                <Link className='nav-item' to="/home">Home</Link>
+                <Link className='nav-item' to="/">Home</Link>
                 <Link className='nav-item' to="/book">Book</Link>
                 {LoogedInUser.email?<button className='nav-item btn' onClick={() => setLoogedInUser({})}>Logout</button>
                 :<Link className='nav-item btn' to="/login">Login</Link>
