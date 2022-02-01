@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
 import headerImg from '../../images/header.png';
 import logo from '../../images/icons/logo.png';
 import './Header.css';
 
 const Header = () => {
-    const [LoogedInUser, setLoogedInUser] = useContext(UserContext);
+    const [LogedInUser, setLogedInUser] = useContext(UserContext);
     return (
         <div className='header-section' style={{ backgroundImage:`linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${headerImg})` }}>
             <nav className='nav-menus'>
@@ -15,7 +15,7 @@ const Header = () => {
                 </Link>
                 <Link className='nav-item' to="/">Home</Link>
                 <Link className='nav-item' to="/book">Book</Link>
-                {LoogedInUser.email?<button className='nav-item btn' onClick={() => setLoogedInUser({})}>Logout</button>
+                {LogedInUser.email?<button className='nav-item btn' onClick={() => setLogedInUser({})}>Logout</button>
                 :<Link className='nav-item btn' to="/login">Login</Link>
                 }
             </nav>

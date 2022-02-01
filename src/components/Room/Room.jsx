@@ -23,7 +23,7 @@ const Room = (props) => {
                 <p>
                 <img src={dollarImg} alt="" />{room.price}                
                 </p>
-                <Link className='btn' to="/book">Book</Link>
+                <Link className='btn' to={`/book/${room.bedType}`}>Book</Link>
             </div>
         </div>
     );

@@ -4,7 +4,10 @@ import {
 import {
     getAuth,
     signInWithPopup,
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    updateProfile,
+    signInWithEmailAndPassword
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -31,6 +34,10 @@ export const googleSignIn = () => {
             const token = credential.accessToken;
             // The signed-in user info.
             const user = result.user;
+            user.name = user.displayName;
+            user.success = true;
+            user.isSignedIn = true;
+            // console.log(user);
             return user;
             // ...
         }).catch((error) => {
@@ -38,4 +45,53 @@ export const googleSignIn = () => {
            return error.message;
             // ...
         });
+}
+
+
+export const signinWithEmail = (name, email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+    .then((res) => {
+      const newUserInfo =res.user;
+      newUserInfo.name = name;
+      newUserInfo.error = '';
+      newUserInfo.success = true;
+      newUserInfo.isSignedIn = true;
+      updateUserName(name);
+      // console.log('log',newUserInfo);
+      return newUserInfo;
+    })
+    .catch((error) => {
+        const newUserInfo = {};
+        newUserInfo.error = error.message;
+        newUserInfo.success = false;
+        return newUserInfo;
+    });
+}
+
+export const signInWithMailAndPwd = (email,password) => {
+   return signInWithEmailAndPassword(auth, email, password)
+  .then((res) => {
+    // Signed in 
+    const newUserInfo = res.user;
+    newUserInfo.name = newUserInfo.displayName;
+    newUserInfo.error = '';
+    newUserInfo.success = true;
+    return newUserInfo;
+  })
+  .catch((error) => {
+    const newUserInfo = {};
+    newUserInfo.error = error.message;
+    newUserInfo.success = false;
+    return newUserInfo;
+  });
+}
+
+const updateUserName = name => {
+  updateProfile(auth.currentUser, {
+    displayName: name
+    }).then(() => {
+      console.log('User name updated');
+    }).catch((error) => {
+      console.log(error.message);
+    });
 }

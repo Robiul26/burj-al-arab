@@ -12,15 +12,15 @@ import { createContext, useState } from "react";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 export const UserContext = createContext();
 function App() {
-  const [LoogedInUser, setLogedInUser] = useState({});
+  const [LogedInUser, setLogedInUser] = useState({});
   return (
-    <UserContext.Provider value={[LoogedInUser, setLogedInUser]}>
+    <UserContext.Provider value={[LogedInUser, setLogedInUser]}>
       <Router>
           <Header/>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/book' element={
+          <Route path='/book/:bedType' element={
             <PrivateRoute>
               <Book/>
             </PrivateRoute>          
